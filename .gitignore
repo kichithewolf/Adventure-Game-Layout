@@ -41,3 +41,12 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+errors.txt
+*.save
+game/saves/persistent
+*.bak
+*.txt
+*.json
+*.rpyc
+*.rpyb
