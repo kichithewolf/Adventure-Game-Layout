@@ -326,78 +326,7 @@ screen file_picker():
 
 screen save():
     tag menu
-    frame:
-        style "file_picker_frame"
-        
-        xalign 0.5
-        yalign 0.5
-        xmargin 300
-
-        has vbox
-        
-        null height 5
-
-        #The buttons at the top allow the user to pick a
-        #page of files.
-        hbox:
-            xalign 0.5
-            style_group "file_picker_nav"
-            
-            textbutton _("Prev"):
-                action FilePagePrevious()
-            
-            for i in range(1, 7):
-                textbutton str(i):
-                    action FilePage(i)
-        
-            textbutton _("Next"):
-                action FilePageNext()
-
-        $ columns = 1
-        $ rows = 3
-
-        # Display a grid of file slots.
-        grid columns rows:
-            transpose True
-            style_group "file_picker"
-
-            # Display ten file slots, numbered 1 - 10.
-            for i in range(1, columns * rows + 1):
-
-                # Each file slot is a button.
-                button:
-                    action [Stop(channel="movie"), FileAction(i)]
-                    xfill True
-                    style "large_button"
-
-                    has hbox
-                    add FileScreenshot(i)
-
-                    $ file_name = FileSlotName(i, columns * rows)
-                    $ file_time = FileTime(i, empty=_("Empty Slot."))
-                    #$ save_name = FileSaveName(i)
-
-                    text "[file_name]. [file_time!t]\n[save_name!t]"
-
-                    key "save_delete" action FileDelete(i)
-                    
-        hbox:
-            xalign 0.5
-            style_group "file_picker_nav"
-
-            textbutton _("Auto"):
-                action FilePage("auto")
-                
-            textbutton _("Regular"):
-                action FilePage(1)
-
-            textbutton _("Quick"):
-                action FilePage("quick")
-                
-            textbutton _("Return"):
-                action Return()
-                
-        null height 5
+    use file_picker
 
 screen load():
     tag menu
