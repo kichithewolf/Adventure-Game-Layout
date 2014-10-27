@@ -7,6 +7,9 @@
 
 init python:
      _game_menu_screen = "custom_menu"
+     
+init:
+     $ save_name = "Prologue"
 
 ##############################################################################
 # Say
@@ -253,13 +256,14 @@ screen file_picker():
         
         xalign 0.5
         yalign 0.5
+        xmargin 300
 
         has vbox
         
         null height 5
 
-        # The buttons at the top allow the user to pick a
-        # page of files.
+        #The buttons at the top allow the user to pick a
+        #page of files.
         hbox:
             xalign 0.5
             style_group "file_picker_nav"
@@ -270,17 +274,16 @@ screen file_picker():
             for i in range(1, 7):
                 textbutton str(i):
                     action FilePage(i)
-
+        
             textbutton _("Next"):
                 action FilePageNext()
 
-        $ columns = 3
-        $ rows = 5
+        $ columns = 1
+        $ rows = 3
 
         # Display a grid of file slots.
         grid columns rows:
             transpose True
-            xfill False
             style_group "file_picker"
 
             # Display ten file slots, numbered 1 - 10.
@@ -289,12 +292,10 @@ screen file_picker():
                 # Each file slot is a button.
                 button:
                     action [Stop(channel="movie"), FileAction(i)]
-                    xfill False
-                    size_group "pref"
+                    xfill True
+                    style "large_button"
 
                     has hbox
-
-                    # Add the screenshot.
                     add FileScreenshot(i)
 
                     $ file_name = FileSlotName(i, columns * rows)
@@ -311,37 +312,95 @@ screen file_picker():
 
             textbutton _("Auto"):
                 action FilePage("auto")
+                
+            textbutton _("Regular"):
+                action FilePage(1)
 
             textbutton _("Quick"):
                 action FilePage("quick")
+                
+            textbutton _("Return"):
+                action Return()
                 
         null height 5
 
 screen save():
     tag menu
-    use navigation
-    use file_picker
+    frame:
+        style "file_picker_frame"
+        
+        xalign 0.5
+        yalign 0.5
+        xmargin 300
+
+        has vbox
+        
+        null height 5
+
+        #The buttons at the top allow the user to pick a
+        #page of files.
+        hbox:
+            xalign 0.5
+            style_group "file_picker_nav"
+            
+            textbutton _("Prev"):
+                action FilePagePrevious()
+            
+            for i in range(1, 7):
+                textbutton str(i):
+                    action FilePage(i)
+        
+            textbutton _("Next"):
+                action FilePageNext()
+
+        $ columns = 1
+        $ rows = 3
+
+        # Display a grid of file slots.
+        grid columns rows:
+            transpose True
+            style_group "file_picker"
+
+            # Display ten file slots, numbered 1 - 10.
+            for i in range(1, columns * rows + 1):
+
+                # Each file slot is a button.
+                button:
+                    action [Stop(channel="movie"), FileAction(i)]
+                    xfill True
+                    style "large_button"
+
+                    has hbox
+                    add FileScreenshot(i)
+
+                    $ file_name = FileSlotName(i, columns * rows)
+                    $ file_time = FileTime(i, empty=_("Empty Slot."))
+                    #$ save_name = FileSaveName(i)
+
+                    text "[file_name]. [file_time!t]\n[save_name!t]"
+
+                    key "save_delete" action FileDelete(i)
+                    
+        hbox:
+            xalign 0.5
+            style_group "file_picker_nav"
+
+            textbutton _("Auto"):
+                action FilePage("auto")
+                
+            textbutton _("Regular"):
+                action FilePage(1)
+
+            textbutton _("Quick"):
+                action FilePage("quick")
+                
+            textbutton _("Return"):
+                action Return()
+                
+        null height 5
 
 screen load():
     tag menu
-    use navigation
-    use file_picker
-
-
-screen save():
-
-    # This ensures that any other menu screen is replaced.
-    tag menu
-
-    use navigation
-    use file_picker
-
-screen load():
-
-    # This ensures that any other menu screen is replaced.
-    tag menu
-
-    use navigation
     use file_picker
 
 init -2:
@@ -361,9 +420,6 @@ init -2:
 screen preferences():
 
     tag menu
-
-    # Include the navigation.
-    use navigation
 
     # Put the navigation columns in a three-wide grid.
     grid 3 1:
@@ -468,6 +524,11 @@ screen preferences():
                         textbutton _("Test"):
                             action Play("voice", config.sample_voice)
                             style "soundtest_button"
+                            
+            frame:
+                style_group "pref"
+                has vbox
+                textbutton _("Return") action Return()
 
 init -2:
     style pref_frame:
@@ -537,13 +598,3 @@ init -2:
     style yesno_label_text:
         text_align 0.5
         layout "subtitle"
-
-##############################################################################
-# Custom Menu
-#
-# Screen for a custom right-click menu in-game
-#
-
-screen custom_menu:
-    tag menu
-    use navigation

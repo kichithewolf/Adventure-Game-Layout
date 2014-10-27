@@ -50,3 +50,4 @@ game/saves/persistent
 *.json
 *.rpyc
 *.rpyb
+game/cache/*

@@ -9,10 +9,17 @@ define e = Character('Eileen', color="#c8ffc8")
 
 # The game starts here.
 label start:
-    show screen in_game_nav_button
+    
+    "Prologue"
 
     e "You've created a new Ren'Py game."
 
     e "Once you add a story, pictures, and music, you can release it to the world!"
+    
+    "Act 1"
+    
+    $ save_name = "Act 1"
+    
+    e "Done with prologue, save name should change here."
 
     return

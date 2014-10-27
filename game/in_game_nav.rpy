@@ -1,23 +1,12 @@
-#show screen in_game_nav_button
-
-screen in_game_nav_button():
-    vbox xalign 1.0 yalign 0.0:
-        imagebutton:
-            idle "assets/buttons/ingamenav.png"
-            hover "assets/buttons/ingamenavhover.png"
-            action ui.callsinnewcontext("in_game_nav_label")
-
-label in_game_nav_label:
-    window hide
-    call screen in_game_nav
-    return
-            
-screen in_game_nav():
+screen custom_menu():
     tag menu
-    
-    frame:
-        has vbox
-        textbutton _("Something") action Return()
-        textbutton _("Something") action Return()
-        textbutton _("Something") action Return()
-        textbutton _("Return") action Return()
+    imagemap:
+        ground "assets/menu/game_menu_default.png"
+        hover "assets/menu/game_menu_selected.png"
+        hotspot (121, 140, 206, 140) action ShowMenu("inventory")
+        hotspot (420, 138, 198, 136) action ShowMenu("profiles")
+        hotspot (708, 133, 206, 140) action ShowMenu("journal")
+        hotspot (119, 467, 226, 176) action ShowMenu("preferences")
+        hotspot (435, 464, 244, 192) action ShowMenu("load")
+        hotspot (734, 457, 231, 202) action ShowMenu("save")
+        hotspot (886, 1, 135, 46) action ShowMenu("main_menu")
