@@ -1,6 +1,4 @@
 init -1 python:
-    import renpy.store as store
-    import renpy.exports as renpy # we need this so Ren'Py properly handles rollback with classes
     from operator import attrgetter # we need this for sorting items
 
     inv_page = 0 # initial page of teh inventory screen
@@ -106,8 +104,6 @@ init -1:
     image tooltip_inventory_banana=LiveComposite((665, 73), (3,0), ImageReference("information"), (3,30), Text("A healthy banana full of potassium! You can also use it as ammo for your guns! O.O Recharges 20 bullets.", style="tips_bottom"))
     image tooltip_inventory_gun=LiveComposite((665, 73), (3,0), ImageReference("information"), (3,30), Text("An gun that looks like something a cop would\ncarry around. Most effective on humans.", style="tips_bottom"))
     image tooltip_inventory_laser=LiveComposite((665, 73), (3,0), ImageReference("information"), (3,30), Text("An energy gun that shoots photon beams.\nMost effective on aliens.", style="tips_bottom"))
-    
-    image sidewalk = "Sidewalk.jpg"
     
 screen profiles:
     textbutton _("Return") action Return()
