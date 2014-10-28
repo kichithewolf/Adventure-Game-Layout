@@ -17,8 +17,8 @@ label start:
         laser = Item("Laser Gun", image="gui/inv_laser.png")
         
         
-        gun = Person("Gun", image="gui/inv_gun.png")
-        laser = Person("Laser Gun", image="gui/inv_laser.png")
+        gun = Person("Gun", image="gui/pro_gun.png")
+        laser = Person("Laser Gun", image="gui/pro_laser.png")
         
         
         inventory = Inventory()
@@ -56,6 +56,42 @@ label start:
     
     e "Added profiles."
     
+    "Act IV"
+    
+    e "Updating journal"
+    
+    e "Journal updated."
+    
+    "Act IV"
+    
+    e "Done talking with witness/victim/random person/parrot."
+    
+    $ current_talk = "demo_witness_talk_1"
+    
+    call nav_screen_label
+    
     "End game"
 
     return
+
+
+label demo_witness_talk_1:
+    $loop = 1
+    while loop == 1:
+        menu:
+            "Hello":
+                e "Hello."
+                
+                "Hello there."
+                
+                e "Bye."
+                
+                "Goodbye."
+                
+            "Test 2":
+                
+                "Test 2"
+                
+            "Finished talking.":
+                $ loop = 0
+    call nav_screen_label

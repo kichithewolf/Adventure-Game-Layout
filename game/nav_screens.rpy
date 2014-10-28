@@ -48,7 +48,7 @@ init -1 python:
     style.button_text.color="000"
 
 
-    showitems = True #turn True to debug the inventory
+    showitems = False #turn True to debug the inventory
     def display_items_overlay():
         if showitems:
             inventory_show = "Inventory: "
