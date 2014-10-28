@@ -64,13 +64,25 @@ label start:
     
     "Act IV"
     
-    e "Done talking with witness/victim/random person/parrot."
+    $ cleared_area = 0
     
-    $ current_talk = "demo_witness_talk_1"
-    
-    call nav_screen_label
+    call demo_act_IV
+
+label endgame:
     
     "End game"
+    
+    return
+    
+label demo_act_IV:
+    
+    if cleared_area == 0:
+        $ current_talk = "demo_witness_talk_1"
+        call nav_screen_label
+    
+    e "Done talking with witness/victim/random person/parrot."
+    
+    jump endgame
 
     return
 
@@ -94,4 +106,6 @@ label demo_witness_talk_1:
                 
             "Finished talking.":
                 $ loop = 0
-    call nav_screen_label
+                $ cleared_area = 1
+                
+    call demo_act_IV
