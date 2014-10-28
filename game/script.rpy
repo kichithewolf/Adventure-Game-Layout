@@ -15,7 +15,14 @@ label start:
         banana = Item("Banana", image="gui/inv_banana.png")    
         gun = Item("Gun", image="gui/inv_gun.png")
         laser = Item("Laser Gun", image="gui/inv_laser.png")
+        
+        
+        gun = Person("Gun", image="gui/inv_gun.png")
+        laser = Person("Laser Gun", image="gui/inv_laser.png")
+        
+        
         inventory = Inventory()
+        profile = Profiles()
     
     "Prologue"
 
@@ -39,5 +46,16 @@ label start:
     $inventory.add(banana)
     
     e "Added chocolate and banana."
+    
+    "Act 3"
+    
+    e "Adding profiles."
+    
+    $profile.add(gun)
+    $profile.add(laser)
+    
+    e "Added profiles."
+    
+    "End game"
 
     return
