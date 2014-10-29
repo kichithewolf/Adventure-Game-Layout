@@ -91,24 +91,25 @@ label demo_act_IV:
         $ demo_background_1_response = 0
         call nav_screen_label
     
-    e "Done talking with witness/victim/random person/parrot."
+    e "Done talking/exploring."
     
     jump endgame
 
     return
     
 screen demo_background_1:
-    textbutton _("Return") action Return()
-    
     imagemap:
         ground "assets/backgrounds/background2.png"
         hover "assets/backgrounds/background2.png"
-        hotspot (113, 173, 151, 122) action [SetVariable("demo_background_1_response", 1), Return()]
-        hotspot (434, 287, 161, 156) action [SetVariable("demo_background_1_response", 2), Return()]
-        hotspot (151, 493, 197, 176) action [SetVariable("demo_background_1_response", 3), Return()]
-        hotspot (714, 453, 162, 158) action [SetVariable("demo_background_1_response", 4), Return()]
+        hotspot (113, 173, 151, 122) action [SetVariable("demo_background_1_response", 1), Jump("demo_background_1_answer")]
+        hotspot (434, 287, 161, 156) action [SetVariable("demo_background_1_response", 2), Jump("demo_background_1_answer")]
+        hotspot (151, 493, 197, 176) action [SetVariable("demo_background_1_response", 3), Jump("demo_background_1_answer")]
+        hotspot (714, 453, 162, 158) action [SetVariable("demo_background_1_response", 4), Jump("demo_background_1_answer")]
+        
+        textbutton _("Return") action Return()
         
 label demo_background_1_answer:
+    hide placeholder
     if demo_background_1_response == 1:
         "You clicked #1"
     elif demo_background_1_response == 2:
@@ -118,7 +119,9 @@ label demo_background_1_answer:
     elif demo_background_1_response == 4:
         "You clicked #4"
         
-    call demo_background_1
+    call screen demo_background_1
+    
+    jump demo_act_IV
     
     return
 
