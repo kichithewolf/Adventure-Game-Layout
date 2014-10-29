@@ -1,10 +1,13 @@
 ﻿# You can place the script of your game in this file.
 
-# Declare images below this line, using the image statement.
-# eg. image eileen happy = "eileen_happy.png"
+image placeholder = "assets/portraits/placeholder.png"
+
+image background1 = "assets/backgrounds/background1.png"
+image background2 = "assets/backgrounds/background2.png"
 
 # Declare characters used by this game.
-define e = Character('Eileen', color="#c8ffc8")
+define e = Character('Player Character', color="#c8ffc8")
+define w = Character('Witness', color = "c8ffc9")
 
 
 # The game starts here.
@@ -23,6 +26,8 @@ label start:
         
         inventory = Inventory()
         profile = Profiles()
+    
+    scene background1
     
     "Prologue"
 
@@ -56,7 +61,7 @@ label start:
     
     e "Added profiles."
     
-    "Act IV"
+    "Act 4"
     
     e "Updating journal"
     
@@ -65,6 +70,10 @@ label start:
     "Act IV"
     
     $ cleared_area = 0
+    
+    scene background2
+    
+    show placeholder at center
     
     call demo_act_IV
 
@@ -78,6 +87,8 @@ label demo_act_IV:
     
     if cleared_area == 0:
         $ current_talk = "demo_witness_talk_1"
+        $ current_background = "demo_background_1"
+        $ demo_background_1_response = 0
         call nav_screen_label
     
     e "Done talking with witness/victim/random person/parrot."
@@ -85,7 +96,31 @@ label demo_act_IV:
     jump endgame
 
     return
-
+    
+screen demo_background_1:
+    textbutton _("Return") action Return()
+    
+    imagemap:
+        ground "assets/backgrounds/background2.png"
+        hover "assets/backgrounds/background2.png"
+        hotspot (113, 173, 151, 122) action [SetVariable("demo_background_1_response", 1), Return()]
+        hotspot (434, 287, 161, 156) action [SetVariable("demo_background_1_response", 2), Return()]
+        hotspot (151, 493, 197, 176) action [SetVariable("demo_background_1_response", 3), Return()]
+        hotspot (714, 453, 162, 158) action [SetVariable("demo_background_1_response", 4), Return()]
+        
+label demo_background_1_answer:
+    if demo_background_1_response == 1:
+        "You clicked #1"
+    elif demo_background_1_response == 2:
+        "You clicked #2"
+    elif demo_background_1_response == 3:
+        "You clicked #3"
+    elif demo_background_1_response == 4:
+        "You clicked #4"
+        
+    call demo_background_1
+    
+    return
 
 label demo_witness_talk_1:
     $loop = 1
