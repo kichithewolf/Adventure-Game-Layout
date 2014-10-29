@@ -201,8 +201,8 @@ init -1:
     #Tooltips-profile:
     image tooltip_profile_chocolate=LiveComposite((665, 73), (3,0), ImageReference("information"), (3,30), Text("Generic chocolate to heal\n40 points of health.", style="tips_bottom"))
     image tooltip_profile_banana=LiveComposite((665, 73), (3,0), ImageReference("information"), (3,30), Text("A healthy banana full of potassium! You can also use it as ammo for your guns! O.O Recharges 20 bullets.", style="tips_bottom"))
-    image tooltip_profile_gun=LiveComposite((665, 73), (3,0), ImageReference("information"), (3,30), Text("An gun that looks like something a cop would\ncarry around. Most effective on humans.", style="tips_bottom"))
-    image tooltip_profile_laser=LiveComposite((665, 73), (3,0), ImageReference("information"), (3,30), Text("An energy gun that shoots photon beams.\nMost effective on aliens.", style="tips_bottom"))
+    image tooltip_profile_gun=LiveComposite((665, 73), (3,0), ImageReference("information"), (3,30), Text("This is totally a person and not a lazy way of recycling assets.", style="tips_bottom"))
+    image tooltip_profile_laser=LiveComposite((665, 73), (3,0), ImageReference("information"), (3,30), Text("This is totally a person and not a lazy way of recycling assets.", style="tips_bottom"))
     
 screen journal:
     textbutton _("Return") action Return()

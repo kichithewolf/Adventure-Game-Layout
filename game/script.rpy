@@ -35,6 +35,8 @@ label start:
 
     e "Once you add a story, pictures, and music, you can release it to the world!"
     
+    e "Inventory and Profiles work. Journal has yet to be implemented. There is nowhere to move yet."
+    
     $ save_name = "Act 1"
     
     "Act 1"
@@ -60,12 +62,6 @@ label start:
     $profile.add(laser)
     
     e "Added profiles."
-    
-    "Act 4"
-    
-    e "Updating journal"
-    
-    e "Journal updated."
     
     "Act IV"
     
