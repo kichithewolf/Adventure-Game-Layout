@@ -23,7 +23,7 @@ screen custom_navigation():
             hotspot (78, 21, 154, 132) action NullAction()#Move
             hotspot (310, 18, 163, 136) action Jump(current_talk)#Talk
             hotspot (530, 18, 161, 137) action NullAction()#Present
-            hotspot (728, 16, 161, 141) action Show("demo_background_1")#Examine
+            hotspot (728, 16, 161, 141) action Show(current_background)#Examine
 
 screen button():
     vbox xalign 0.99 yalign 0.01:
