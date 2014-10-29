@@ -51,3 +51,4 @@ game/saves/persistent
 *.rpyc
 *.rpyb
 game/cache/*
+tmp/Info.plist
