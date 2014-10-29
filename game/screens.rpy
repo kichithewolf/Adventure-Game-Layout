@@ -10,6 +10,7 @@ init python:
      
 init:
      $ save_name = "Prologue"
+     $ picked_case = 0
 
 ##############################################################################
 # Say
@@ -194,7 +195,7 @@ screen main_menu():
 
         has vbox
 
-        textbutton _("Start Game") action Start()
+        textbutton _("Start Game") action ShowMenu("case_picker_1")
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
         textbutton _("Help") action Help()

@@ -26,6 +26,17 @@ label start:
         
         inventory = Inventory()
         profile = Profiles()
+        
+    if picked_case == 1:
+        call case_1
+    elif picked_case == 2:
+        call case_2
+    elif picked_case == 3:
+        call case_3
+    else:
+        "Something went horribly wrong."
+        
+label case_1:
     
     scene background1
     
@@ -74,6 +85,18 @@ label start:
     show placeholder at center
     
     call demo_act_IV
+    
+    return
+    
+label case_2:
+    "Case 2 here."
+    call endgame
+    return
+
+label case_3:
+    "Case 3 here."
+    call endgame
+    return
 
 label endgame:
     

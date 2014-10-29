@@ -203,6 +203,52 @@ init -1:
     image tooltip_profile_banana=LiveComposite((665, 73), (3,0), ImageReference("information"), (3,30), Text("A healthy banana full of potassium! You can also use it as ammo for your guns! O.O Recharges 20 bullets.", style="tips_bottom"))
     image tooltip_profile_gun=LiveComposite((665, 73), (3,0), ImageReference("information"), (3,30), Text("This is totally a person and not a lazy way of recycling assets.", style="tips_bottom"))
     image tooltip_profile_laser=LiveComposite((665, 73), (3,0), ImageReference("information"), (3,30), Text("This is totally a person and not a lazy way of recycling assets.", style="tips_bottom"))
-    
+
+###########################
+# Journal
+#
+###########################
+
 screen journal:
     textbutton _("Return") action Return()
+    
+###########################
+# Case Picker
+#Start()
+###########################
+screen case_picker_1:
+    tag menu
+    
+    imagemap:
+        ground "assets/menu/case picker 1 ground.png"
+        hover "assets/menu/case picker 1 selected.png"
+        hotspot (269, 326, 517, 267) action [SetVariable("picked_case", 1), Start()]
+        hotspot (821, 429, 163, 77) action [ShowMenu("case_picker_2")]
+        
+    textbutton _("Return") action Return()
+
+screen case_picker_2:
+    tag menu
+    
+    imagemap:
+        ground "assets/menu/case picker 2 ground.png"
+        hover "assets/menu/case picker 2 selected.png"
+        hotspot (59, 464, 139, 69) action [ShowMenu("case_picker_1")]
+        hotspot (275, 369, 508, 259) action [SetVariable("picked_case", 2), Start()]
+        hotspot (819, 460, 168, 68) action [ShowMenu("case_picker_3")]
+        
+    textbutton _("Return") action Return()
+
+screen case_picker_3:
+    tag menu
+    
+    imagemap:
+        ground "assets/menu/case picker 3 ground.png"
+        hover "assets/menu/case picker 3 selected.png"
+        hotspot (59, 464, 139, 69) action [ShowMenu("case_picker_2")]
+        hotspot (275, 369, 508, 259) action [SetVariable("picked_case", 3), Start()]
+        
+    textbutton _("Return") action Return()
+    
+    
+    
